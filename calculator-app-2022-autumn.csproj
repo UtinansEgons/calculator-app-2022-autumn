@@ -6,6 +6,11 @@
     <RootNamespace>calculator_app_2022_autumn</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Graphicloads-100-Flat-2-Calculator.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Graphicloads-100-Flat-2-Calculator.ico" />
+  </ItemGroup>
 
 </Project>

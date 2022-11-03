@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace calculator_app_2022_autumn
 {
     /// <summary>
@@ -25,17 +26,27 @@ namespace calculator_app_2022_autumn
             InitializeComponent();
         }
 
-        bool numberTyped = false;
+        bool numberTyped = true;
         private void NumericButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            Display.Text += (string)button.Content;
+
+            if (Display.Text == "0")
+            {
+                Display.Text = (string)button.Content;
+            }
+            else
+            {
+                Display.Text += (string)button.Content;
+            }
+            //Display.Text += (string)button.Content;
             numberTyped = true;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            Display.Text = "";
+            Display.Text = "0";
+            numberTyped = false;
         }
 
         private void OperationsButton_Click(object sender, RoutedEventArgs e)
@@ -57,7 +68,6 @@ namespace calculator_app_2022_autumn
 
         }
 
-        //code taken from https://stackoverflow.com/questions/6052640/is-there-an-eval-function-in-c
         public static double Evaluate(string expression)
         {
             System.Data.DataTable table = new System.Data.DataTable();
@@ -65,6 +75,7 @@ namespace calculator_app_2022_autumn
             System.Data.DataRow row = table.NewRow();
             table.Rows.Add(row);
             return double.Parse((string)row["expression"]);
+
         }
     }
 }
