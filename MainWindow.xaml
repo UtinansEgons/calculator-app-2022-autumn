@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:calculator_app_2022_autumn"
         mc:Ignorable="d"
-        Title="Calculator" Height="400" Width="380">
+        Title="Calculator" Height="460" Width="300">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -37,7 +37,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" CornerRadius="6" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" SnapsToDevicePixels="true">
+                        <Border x:Name="border" CornerRadius="14" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" SnapsToDevicePixels="true">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -61,11 +61,19 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+                <Style.Triggers>
+                <Trigger Property="Content" Value="🌙">
+                    <Setter Property="Background" Value="#FFF8F4F4" />
+                </Trigger>
+                <Trigger Property="Content" Value="☀️">
+                    <Setter Property="Background" Value="#FF2B2B2B" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-        <Style x:Key="RoundTextBox" TargetType="{x:Type TextBox}">
+        <Style x:Key="RoundTextBox" x:Name="btnStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
             <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -79,7 +87,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" CornerRadius="6" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" SnapsToDevicePixels="True">
+                        <Border x:Name="border" CornerRadius="8" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" SnapsToDevicePixels="True">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" BorderBrush="Black"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -97,6 +105,7 @@
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
+
                 <MultiTrigger>
                     <MultiTrigger.Conditions>
                         <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
@@ -107,26 +116,31 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid Background="#FFEFF4F6">
-        <TextBox Style="{DynamicResource RoundTextBox}" x:Name="Display" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="70" Background="#FFA6A0A0" Foreground="#FFEDEBEB" TextAlignment="Right" FontSize="48" FontFamily="Cascadia Mono" IsReadOnly="True" BorderBrush="#FF707070" Text="0"/>
-        <Button Content="1" HorizontalAlignment="Left" Margin="20,89,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click" BorderBrush="#FF707070"/>
-        <Button Content="2" HorizontalAlignment="Left" Margin="85,89,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="3" HorizontalAlignment="Left" Margin="150,89,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="4" HorizontalAlignment="Left" Margin="20,154,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="5" HorizontalAlignment="Left" Margin="85,154,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="6" HorizontalAlignment="Left" Margin="150,154,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="7" HorizontalAlignment="Left" Margin="20,219,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="8" HorizontalAlignment="Left" Margin="85,219,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="9" HorizontalAlignment="Left" Margin="150,219,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="0" HorizontalAlignment="Left" Margin="85,284,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="NumericButton_Click"/>
-        <Button Content="Del" HorizontalAlignment="Left" Margin="20,284,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFAA7878" Foreground="#FFEDEBEB" Click="DeleteButton_Click"/>
-        <Button Content="+" HorizontalAlignment="Left" Margin="235,89,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="OperationsButton_Click"/>
-        <Button Content="-" HorizontalAlignment="Left" Margin="235,154,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="OperationsButton_Click"/>
-        <Button Content="/" HorizontalAlignment="Left" Margin="235,219,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="OperationsButton_Click"/>
-        <Button Content="*" HorizontalAlignment="Left" Margin="300,89,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="OperationsButton_Click"/>
-        <Button Content="=" HorizontalAlignment="Left" Margin="150,284,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FF7AAA78" Foreground="#FFEDEBEB" Click="ResultsButton_Click"/>
-        <Button Content="." HorizontalAlignment="Left" Margin="300,154,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="OperationsButton_Click"/>
-        <Button Content="%" HorizontalAlignment="Left" Margin="300,219,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFA6A0A0" Foreground="#FFEDEBEB" Click="OperationsButton_Click"/>
+
+    <Grid Background="#ffffff" x:Name="gridBackground" Margin="0,0,0,-6">
+        <Grid x:Name="otherGrid" Background="#FFF0F0F0" Margin="0,108,0,0"></Grid>
+        <TextBox Style="{DynamicResource RoundTextBox}" x:Name="Display" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="31" Background="White" Foreground="Black" TextAlignment="Right" FontSize="24" FontFamily="Cascadia Mono" IsReadOnly="True" BorderBrush="White" Text="0"/>
+        <Button x:Name="ButtonOne" Content="1" HorizontalAlignment="Left" Margin="20,316,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonTwo" Content="2" HorizontalAlignment="Left" Margin="85,316,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="3" HorizontalAlignment="Left" Margin="150,316,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="4" HorizontalAlignment="Left" Margin="20,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="5" HorizontalAlignment="Left" Margin="85,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="6" HorizontalAlignment="Left" Margin="150,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="7" HorizontalAlignment="Left" Margin="20,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="8" HorizontalAlignment="Left" Margin="85,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="9" HorizontalAlignment="Left" Margin="150,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonZero" Content="0" HorizontalAlignment="Left" Margin="85,381,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="Del" HorizontalAlignment="Left" Margin="20,381,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="DeleteButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="215,316,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="215,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="/" HorizontalAlignment="Left" Margin="215,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="*" HorizontalAlignment="Left" Margin="215,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="=" HorizontalAlignment="Left" Margin="215,381,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="ResultsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="." HorizontalAlignment="Left" Margin="150,381,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="%" HorizontalAlignment="Left" Margin="150,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#3efcd7" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button Content="( )" HorizontalAlignment="Left" Margin="85,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#3efcd7" Click="BracketButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="themeBtn" Content="🌙" HorizontalAlignment="Left" Margin="20,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FF2B2B2B" Foreground="#FFEDEBEB" Click="ThemeButton_Click"/>
+        <TextBox Style="{DynamicResource RoundTextBox}" x:Name="Result" HorizontalAlignment="Left" Margin="20,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="57" Background="White" Foreground="Black" TextAlignment="Right" FontSize="42" FontFamily="Cascadia Mono" IsReadOnly="True" BorderBrush="White" Text="0"/>
 
     </Grid>
 </Window>

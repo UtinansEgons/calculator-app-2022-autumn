@@ -13,4 +13,8 @@
     <Content Include="Graphicloads-100-Flat-2-Calculator.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CoreCLR-NCalc" Version="2.2.110" />
+  </ItemGroup>
+
 </Project>
