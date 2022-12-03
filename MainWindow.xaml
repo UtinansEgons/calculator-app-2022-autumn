@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:calculator_app_2022_autumn"
         mc:Ignorable="d"
-        Title="Calculator" Height="460" Width="300">
+        Title="Calculator" Height="472" Width="300" ResizeMode="NoResize" SizeToContent="Manual">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -61,7 +61,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-                <Style.Triggers>
+            <Style.Triggers>
                 <Trigger Property="Content" Value="🌙">
                     <Setter Property="Background" Value="#FFF8F4F4" />
                 </Trigger>
@@ -118,29 +118,32 @@
     </Window.Resources>
 
     <Grid Background="#ffffff" x:Name="gridBackground" Margin="0,0,0,-6">
-        <Grid x:Name="otherGrid" Background="#FFF0F0F0" Margin="0,108,0,0"></Grid>
-        <TextBox Style="{DynamicResource RoundTextBox}" x:Name="Display" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="31" Background="White" Foreground="Black" TextAlignment="Right" FontSize="24" FontFamily="Cascadia Mono" IsReadOnly="True" BorderBrush="White" Text="0"/>
-        <Button x:Name="ButtonOne" Content="1" HorizontalAlignment="Left" Margin="20,316,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button x:Name="ButtonTwo" Content="2" HorizontalAlignment="Left" Margin="85,316,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="3" HorizontalAlignment="Left" Margin="150,316,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="4" HorizontalAlignment="Left" Margin="20,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="5" HorizontalAlignment="Left" Margin="85,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="6" HorizontalAlignment="Left" Margin="150,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="7" HorizontalAlignment="Left" Margin="20,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="8" HorizontalAlignment="Left" Margin="85,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="9" HorizontalAlignment="Left" Margin="150,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button x:Name="ButtonZero" Content="0" HorizontalAlignment="Left" Margin="85,381,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="Del" HorizontalAlignment="Left" Margin="20,381,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="DeleteButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="+" HorizontalAlignment="Left" Margin="215,316,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="-" HorizontalAlignment="Left" Margin="215,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="/" HorizontalAlignment="Left" Margin="215,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="*" HorizontalAlignment="Left" Margin="215,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="=" HorizontalAlignment="Left" Margin="215,381,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="ResultsButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="." HorizontalAlignment="Left" Margin="150,381,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="%" HorizontalAlignment="Left" Margin="150,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#3efcd7" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
-        <Button Content="( )" HorizontalAlignment="Left" Margin="85,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#3efcd7" Click="BracketButton_Click" BorderBrush="#FFF8F4F4"/>
+
+        <Grid x:Name="otherGrid" Background="#FFF0F0F0" Margin="0,108,0,0" Height="381" VerticalAlignment="Top">
+            <Rectangle HorizontalAlignment="Center" Height="3" Margin="0,342,0,0" Stroke="Black" VerticalAlignment="Top" Width="300" Opacity="0"/>
+        </Grid>
+        <TextBox Style="{DynamicResource RoundTextBox}" x:Name="Display" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="31" Background="White" Foreground="Black" TextAlignment="Right" FontSize="24" FontFamily="Cascadia Mono" IsReadOnly="True" BorderBrush="White" Text="0" Grid.ColumnSpan="3"/>
+        <Button x:Name="ButtonOne" Content="1" HorizontalAlignment="Left" Margin="20,317,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonTwo" Content="2" HorizontalAlignment="Left" Margin="85,317,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonThree" Content="3" HorizontalAlignment="Left" Margin="150,317,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonFour" Content="4" HorizontalAlignment="Left" Margin="20,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonFive" Content="5" HorizontalAlignment="Left" Margin="85,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonSix" Content="6" HorizontalAlignment="Left" Margin="150,251,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonSeven" Content="7" HorizontalAlignment="Left" Margin="20,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonEight" Content="8" HorizontalAlignment="Left" Margin="85,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonNine" Content="9" HorizontalAlignment="Left" Margin="150,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonZero" Content="0" HorizontalAlignment="Left" Margin="85,382,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="NumericButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonDel" Content="Del" HorizontalAlignment="Left" Margin="20,382,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="DeleteButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonPlus" Content="+" HorizontalAlignment="Left" Margin="215,317,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonMin" Content="-" HorizontalAlignment="Left" Margin="215,252,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonDiv" Content="/" HorizontalAlignment="Left" Margin="215,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonMult" Content="*" HorizontalAlignment="Left" Margin="215,187,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonEquals" Content="=" HorizontalAlignment="Left" Margin="215,382,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#FFE16262" Click="ResultsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonPeriod" Content="." HorizontalAlignment="Left" Margin="150,382,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#41444c" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonPerc" Content="%" HorizontalAlignment="Left" Margin="85,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#3efcd7" Click="OperationsButton_Click" BorderBrush="#FFF8F4F4"/>
+        <Button x:Name="ButtonParan" Content="( )" HorizontalAlignment="Left" Margin="150,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FFF8F4F4" Foreground="#3efcd7" Click="BracketButton_Click" BorderBrush="#FFF8F4F4"/>
         <Button x:Name="themeBtn" Content="🌙" HorizontalAlignment="Left" Margin="20,122,0,0" VerticalAlignment="Top" Height="60" Width="60" FontFamily="Cascadia Mono" FontSize="22" Background="#FF2B2B2B" Foreground="#FFEDEBEB" Click="ThemeButton_Click"/>
-        <TextBox Style="{DynamicResource RoundTextBox}" x:Name="Result" HorizontalAlignment="Left" Margin="20,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="57" Background="White" Foreground="Black" TextAlignment="Right" FontSize="42" FontFamily="Cascadia Mono" IsReadOnly="True" BorderBrush="White" Text="0"/>
+        <TextBox Style="{DynamicResource RoundTextBox}" x:Name="Result" HorizontalAlignment="Left" Margin="20,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" Height="57" Background="White" Foreground="Black" TextAlignment="Right" FontSize="42" FontFamily="Cascadia Mono" IsReadOnly="True" BorderBrush="White" Text="0" Grid.ColumnSpan="3"/>
 
     </Grid>
 </Window>

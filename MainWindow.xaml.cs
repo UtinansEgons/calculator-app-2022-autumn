@@ -18,9 +18,6 @@ using NCalc;
 
 namespace calculator_app_2022_autumn
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 
@@ -42,7 +39,6 @@ namespace calculator_app_2022_autumn
             {
                 Display.Text += (string)button.Content;
             }
-            //Display.Text += (string)button.Content;
             numberTyped = true;
         }
 
@@ -64,15 +60,9 @@ namespace calculator_app_2022_autumn
 
         private void ResultsButton_Click(object sender, RoutedEventArgs e)
         {
-            //double result;
-            //String equation = Display.Text;
-            //result = Evaluate(equation);
-            //Display.Text = result.ToString();
-
             var expression = new NCalc.Expression(Display.Text);
             Func<double> func = expression.ToLambda<double>();
             Result.Text = func().ToString();
-
         }
 
         public static double Evaluate(string expression)
@@ -85,46 +75,29 @@ namespace calculator_app_2022_autumn
 
         }
 
-        private void SqrtButton_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-            Display.Text += "pow(";
-            bracketOpened++;
-        }
-
         int bracketOpened = 0;
         private void BracketButton_Click(object sender, RoutedEventArgs e)
         {
-            if (bracketOpened == 0)
+            if (bracketOpened == 0 && !numberTyped)
             {
                 bracketOpened++;
                 Display.Text += "(";
-            } else
+                numberTyped=false;
+            } 
+            else if (bracketOpened > 0 && numberTyped)
             {
                 bracketOpened--;
                 Display.Text += ")";
             }
         }
 
-        private void SqRootButton_Click(object sender, RoutedEventArgs e)
-        {
-            //Button button = (Button)sender;
-            //Display.Text += "Sqrt(";
-            //bracketOpened = true;
-
-            Display.Text = "(Sqrt(4)*2)";
-        }
-
-
         bool blackThemeOn = false;
 
-        SolidColorBrush blackTheme = new SolidColorBrush(Color.FromRgb(40, 40, 40));
-        SolidColorBrush whiteTheme = new SolidColorBrush(Color.FromRgb(240, 240, 240));
-        SolidColorBrush color;
+        SolidColorBrush colorOne;
         SolidColorBrush colorTwo;
-        byte gridBackgroundValOne = 255;
+        byte gridBgOne = 255;
         byte gridBackgroundValTwo = 65;
-        byte gridTwoValOne = 240;
+        byte gridBgTwo = 240;
         byte gridTwoValTwo = 40;
         private void ThemeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -136,20 +109,23 @@ namespace calculator_app_2022_autumn
         {
             if (!blackThemeOn)
             {
-                while (gridBackgroundValOne != 65)
+                while (gridBgOne != 65)
                 {
-                    gridBackgroundValOne -= 10;
+                    gridBgOne -= 10;
                     gridBackgroundValTwo += 10;
 
-                    gridTwoValOne -= 10;
+                    gridBgTwo -= 10;
                     gridTwoValTwo += 10;
 
                     await Task.Delay(10);
-                    color = new SolidColorBrush(Color.FromRgb(gridBackgroundValOne,gridBackgroundValOne,gridBackgroundValOne));
-                    colorTwo = new SolidColorBrush(Color.FromRgb(gridTwoValOne, gridTwoValOne, gridTwoValOne));
-                    gridBackground.Background = color;
+
+                    colorOne = new SolidColorBrush(Color.FromRgb(gridBgOne,gridBgOne,gridBgOne));
+                    colorTwo = new SolidColorBrush(Color.FromRgb(gridBgTwo, gridBgTwo, gridBgTwo));
+                    gridBackground.Background = colorOne;
+
                     themeBtn.Background = new SolidColorBrush(Color.FromRgb(gridBackgroundValTwo, gridBackgroundValTwo, gridBackgroundValTwo));
-                    themeBtn.Foreground = color;
+                    changeButtonColor(new SolidColorBrush(Color.FromRgb(gridBgOne, gridBgOne, gridBgOne)), new SolidColorBrush(Colors.White));
+                    themeBtn.Foreground = colorOne;
                     otherGrid.Background = colorTwo;
                 }
                 blackThemeOn = true;
@@ -157,20 +133,23 @@ namespace calculator_app_2022_autumn
             }
             else
             {
-                while (gridBackgroundValOne != 255)
+                while (gridBgOne != 255)
                 {
-                    gridBackgroundValOne += 10;
+                    gridBgOne += 10;
                     gridBackgroundValTwo -= 10;
 
-                    gridTwoValOne += 10;
+                    gridBgTwo += 10;
                     gridTwoValTwo -= 10;
 
                     await Task.Delay(10);
-                    color = new SolidColorBrush(Color.FromRgb(gridBackgroundValOne, gridBackgroundValOne, gridBackgroundValOne));
-                    colorTwo = new SolidColorBrush(Color.FromRgb(gridTwoValOne, gridTwoValOne, gridTwoValOne));
-                    gridBackground.Background = color;
+                    colorOne = new SolidColorBrush(Color.FromRgb(gridBgOne, gridBgOne, gridBgOne));
+                    colorTwo = new SolidColorBrush(Color.FromRgb(gridBgTwo, gridBgTwo, gridBgTwo));
+
+                    gridBackground.Background = colorOne;
+
                     themeBtn.Background = new SolidColorBrush(Color.FromRgb(gridBackgroundValTwo,gridBackgroundValTwo,gridBackgroundValTwo));
-                    themeBtn.Foreground = color;
+                    themeBtn.Foreground = colorOne;
+                    changeButtonColor(colorOne, new SolidColorBrush(Colors.Black));
                     otherGrid.Background = colorTwo;
                 }
                 blackThemeOn = false;
@@ -178,8 +157,35 @@ namespace calculator_app_2022_autumn
             }
         }
 
-        private void changeButtonColor(Color color)
+
+        private void changeButtonColor(SolidColorBrush color, SolidColorBrush color2)
         {
+
+            Button[] buttons = { ButtonZero, ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive, ButtonSix, ButtonSeven, ButtonEight, ButtonNine, ButtonPeriod, ButtonDel };
+            Button[] specialButtons = { ButtonParan, ButtonPerc, ButtonDiv, ButtonMult, ButtonPlus, ButtonMin, ButtonEquals };
+            TextBox[] textboxes = { Display, Result };
+
+
+            foreach (Button button in buttons)
+            {
+                button.Background = color;
+                button.Foreground = color2;
+                button.BorderBrush = color;
+            }
+
+            foreach (Button button in specialButtons)
+            {
+                button.Background = color;
+                button.BorderBrush = color;
+            }
+
+            foreach (TextBox textbox in textboxes)
+            {
+                textbox.Background = color;
+                textbox.Foreground = color2;
+                textbox.BorderBrush = color;
+            }
         }
     }
 }
+
